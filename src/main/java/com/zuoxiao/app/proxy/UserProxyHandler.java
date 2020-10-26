@@ -1,10 +1,6 @@
 package com.zuoxiao.app.proxy;
 
 import com.zuoxiao.app.interf.PrintInterface;
-import com.zuoxiao.app.pojo.User;
-import org.springframework.util.StringUtils;
-
-import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
