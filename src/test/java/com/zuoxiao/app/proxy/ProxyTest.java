@@ -19,10 +19,10 @@ public class ProxyTest {
 
     /**
      * 动态代理原理
-     * 1.jvm在运行时动态的生成一个Proxy&0的类，继承Proxy，实现被代理的接口targetClass实现的接口targetInterface
-     * 2.生成的Proxy&0类只有一个实例，那就是InvocationHandler对象的实例；
+     * 1.jvm在运行时动态的生成一个Proxy&0的类，继承Proxy，实现被代理的接口targetInterface
+     * 2.生成的Proxy&0类只有一个域，那就是InvocationHandler对象的实例；
      * 3.因为Proxy&0类实现了接口targetInterface，所以可以调用和targetClass一样的方法；
-     * 4.Proxy&0类通过反射技术和targetInterface的方法信息，获取到各个方法的Method对象；
+     * 4.Proxy&0类通过反射技术和targetInterface的方法列表，获取到各个方法的Method对象；
      * 5.在调用Proxy&0类的各个方法时，Proxy&0类间接调用了InvocationHandler实例的invoke方法；
      * 6.而InvocationHandler实例的invoke方法再次利用了反射技术，通过传入参数：targetClass对象实例、Method对象实例、参数列表，实现了方法的调用；
      *
