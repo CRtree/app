@@ -44,11 +44,18 @@
             <artifactId>commons-pool2</artifactId>
             <version>2.6.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <!--Spring 应用打包到可执行的 JAR 或 WAR 归档文件-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
