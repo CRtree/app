@@ -16,6 +16,7 @@ class User extends Person implements Serializable, PrintInterface {
 
     private String name;
     private Integer age;
+    private Address address;
 
 
     @Override
