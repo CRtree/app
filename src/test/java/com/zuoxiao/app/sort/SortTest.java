@@ -40,4 +40,11 @@ public class SortTest {
         InsertSort.sort(array);
         print();
     }
+
+    @Test
+    public void MergeTest(){
+        print();
+        int[] result = MergeSort.sort(array);
+        System.out.println(Arrays.toString(result));
+    }
 }

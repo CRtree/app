@@ -23,8 +23,9 @@ public class MergeSort {
             return array;
         }
         int mid = array.length >> 1;
+
         int[] left = partion(Arrays.copyOfRange(array, 0, mid));
-        int[] right = partion(Arrays.copyOfRange(array, mid + 1, array.length));
+        int[] right = partion(Arrays.copyOfRange(array, mid, array.length));
         return merge(left, right);
     }
 
@@ -38,17 +39,14 @@ public class MergeSort {
                     result[index++] = rightArray[i];
                     right++;
                 }
-            }
-            if (left < leftArray.length && right == rightArray.length) {
+            }else if (left < leftArray.length && right == rightArray.length) {
                 for (int i = left; i < leftArray.length; i++) {
                     result[index++] = leftArray[i];
                     left++;
                 }
-            }
-            if (leftArray[left] < rightArray[right]) {
+            }else if (leftArray[left] < rightArray[right]) {
                 result[index++] = leftArray[left++];
-            }
-            if (leftArray[left] >= rightArray[right]) {
+            }else if (leftArray[left] >= rightArray[right]) {
                 result[index++] = rightArray[right++];
             }
 
