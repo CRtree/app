@@ -8,10 +8,12 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisStringCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.core.types.Expiration;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -87,6 +89,29 @@ public class RedisTest {
         redisTemplate.opsForHash().put("hs-key","name","zuoxiao");
         String value = (String) redisTemplate.opsForHash().get("hs-key","name");
         System.out.println("hash ："+value);
+    }
+
+    @Test
+    void zsetTest() throws InterruptedException {
+        ZSetOperations zSetOperations = redisTemplate.opsForZSet();
+        zSetOperations.add("appsvr:ai:callback:time:1","20", System.currentTimeMillis());
+        Thread.sleep(1000);
+        zSetOperations.add("appsvr:ai:callback:time:1","30", System.currentTimeMillis());
+        Thread.sleep(1000);
+        zSetOperations.add("appsvr:ai:callback:time:1","40", System.currentTimeMillis());
+        Thread.sleep(1000);
+        zSetOperations.add("appsvr:ai:callback:time:1","50", System.currentTimeMillis());
+        Thread.sleep(1000);
+        zSetOperations.add("appsvr:ai:callback:time:1","60", System.currentTimeMillis());
+        Set<String> result = zSetOperations.range("appsvr:ai:callback:time:1",1,3);
+        System.out.println("result ："+result);
+    }
+
+    @Test
+    void zsetQueryTest(){
+        ZSetOperations zSetOperations = redisTemplate.opsForZSet();
+        Set<String> result = zSetOperations.reverseRange("appsvr:ai:callback:time:1",0,10);
+        System.out.println("result ："+result);
     }
 
 }
