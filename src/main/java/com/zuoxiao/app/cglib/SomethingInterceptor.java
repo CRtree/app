@@ -18,7 +18,7 @@ public class SomethingInterceptor implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         System.out.println("调用前");
         Object result = methodProxy.invokeSuper(o, objects);
-        System.out.println(" 调用后" + result);
+        System.out.println(" 调用后，接口返回：" + result);
         return result;
     }
 }
