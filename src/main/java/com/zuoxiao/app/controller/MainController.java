@@ -1,10 +1,10 @@
 package com.zuoxiao.app.controller;
 
+import com.zuoxiao.app.pojo.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * TODO
@@ -45,4 +45,29 @@ public class MainController {
         log.error("into message");
         return motd;
     }
+
+    @ResponseBody
+    @PostMapping("/jsonTest")
+    public User jsonTest(@RequestBody User user){
+        log.info(user.toString());
+        return user;
+    }
+
+    @ResponseBody
+    @PostMapping("/formTest")
+    public User formTest(User user){
+        log.info(user.toString());
+        return user;
+    }
+    @ResponseBody
+    @GetMapping("/getTest")
+    public User getTest(String name, Integer age){
+        User user = new User();
+        user.setName(name);
+        user.setAge(age);
+        log.info(user.toString());
+        return user;
+    }
+
+
 }
