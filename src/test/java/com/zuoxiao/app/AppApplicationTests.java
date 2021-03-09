@@ -60,4 +60,56 @@ class AppApplicationTests {
 
 	}
 
+	@Test
+	public void bitTest(){
+		int a = 255;
+		output(a);
+	}
+
+	private void output(int a){
+		if(a == 0){
+			return;
+		}
+		output(a>>1);
+		int t = a & 1;
+		System.out.print(t);
+	}
+
+	@Test
+	public void maze() {
+		int[][] matrix = {
+				{1, 2, 3, 4, 13},
+				{5, 6, 7, 8, 14},
+				{9, 10, 11, 12, 15},
+				{16, 17, 18, 19, 20}};
+		int start = 0;
+		while (matrix.length > start * 2 && matrix[0].length > start * 2) {
+			printMaze(start, matrix);
+			start++;
+		}
+	}
+
+	private void printMaze(int start, int[][] matrix) {
+		int endX = matrix[0].length - 1 - start;//列
+		int endY = matrix.length - 1 - start;//行
+		//从左到右
+		for (int i = start; i <= endX; i++) {
+			System.out.print(matrix[start][i] + ",");
+		}
+		if (endY > start) {
+			for (int i = start + 1; i <= endY; i++) {
+				System.out.print(matrix[i][endX] + ",");
+			}
+		}
+		if (endX > start && endY > start) {
+			for (int i = endX - 1; i >= start; i--) {
+				System.out.print(matrix[endY][i] + ",");
+			}
+		}
+		if (endY - start > 2) {
+			for (int i = endY - 1; i > start; i--) {
+				System.out.print(matrix[i][start] + ",");
+			}
+		}
+	}
 }
