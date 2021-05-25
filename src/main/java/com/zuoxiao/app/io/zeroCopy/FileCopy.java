@@ -50,6 +50,10 @@ public class FileCopy {
         System.out.println("time cost : " + (System.currentTimeMillis() - current));
     }
 
+    /**
+     * 内存映射文件
+     * 直接获取对系统内核文件的地址映射，无需复制到用户空间，减少一次复制
+     */
     static void mmap(){
         File file = new File("D:\\tmp\\content.txt");
         try (FileChannel srcChannel = new FileInputStream(file).getChannel()) {
